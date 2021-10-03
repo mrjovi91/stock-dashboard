@@ -1,0 +1,44 @@
+.main{
+    position: relative;
+    padding: 20px 20px 20px 20px;
+    top: 2.8125rem;
+}
+
+.custom-navbar{
+    z-index: 1000;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #2b6777;
+}
+
+.custom-navbar > li{
+    float: left;
+}
+
+.custom-navbar > li a{
+    border: 1px solid red;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.custom-navbar > li a:hover{
+    background-color: #52ab98;
+}
+
+.card{
+    display: inline-block;
+    height: 18.75rem;
+    width: 18.75rem;
+    border: 1px solid red;
+}
+
