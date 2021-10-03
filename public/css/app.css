@@ -1,10 +1,69 @@
-.main{
+.main {
     position: relative;
-    padding: 20px 20px 20px 20px;
+    padding: 1.25rem 1.25rem 1.25rem 1.25rem;
     top: 2.8125rem;
 }
 
-.custom-navbar{
+.stocktable {
+    border-collapse: collapse;
+    border-radius: 5px 5px 0 0;
+    margin: 25px 0;
+    font-size: 0.9em;
+    /* width: 100%; */
+    min-width: 400px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.stocktable thead tr {
+    background-color: #52ab98;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.stocktable tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.stocktable-row-even {
+    background-color: #f2f2f2;
+}
+
+.stocktable-row-odd {
+    background-color: #c8d8e4;
+}
+
+.stocktable-row-last {
+    background-color: #52ab98;
+}
+
+.stocktable th,
+.stocktable td {
+    padding: 0.75rem 0.9375rem;
+}
+
+.row-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 1.25rem 0px;
+}
+
+.row-sb {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.25rem 0px;
+}
+
+.row-item {
+    margin: 0 1.25rem;
+}
+
+.custom-navbar {
     z-index: 1000;
     position: fixed;
     top: 0px;
@@ -18,27 +77,31 @@
     background-color: #2b6777;
 }
 
-.custom-navbar > li{
+.custom-navbar > li {
     float: left;
 }
 
-.custom-navbar > li a{
+.custom-navbar > li a {
     border: 1px solid red;
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 0.875rem 1rem;
     text-decoration: none;
 }
 
-.custom-navbar > li a:hover{
+.custom-navbar > li a:hover {
     background-color: #52ab98;
 }
 
-.card{
-    display: inline-block;
+.card {
     height: 18.75rem;
     width: 18.75rem;
     border: 1px solid red;
 }
 
+.chart-card {
+    height: 18.75rem;
+    width: 31.25rem;
+    border: 1px solid red;
+}
