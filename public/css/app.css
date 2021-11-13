@@ -9,7 +9,7 @@
     border-radius: 5px 5px 0 0;
     margin: 25px 0;
     font-size: 0.9em;
-    /* width: 100%; */
+    width: 100%;
     min-width: 400px;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -48,7 +48,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 1.25rem 0px;
+    /* margin: 1.25rem 0px; */
 }
 
 .row-sb {
