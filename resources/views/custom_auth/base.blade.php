@@ -35,8 +35,16 @@
         <div class="login-box">
             <div>
                 <div class="login-box-section">
-                    <img src="{{ asset('img/257.png') }}">
+                    <div class="center-column">
+                        <div class="center-row">
+                            <img src="{{ asset('img/257.png') }}" width="221.4" height="231.3">
+                        </div>
+                        <div class="center-row">
+                            <h2>{{ $title }}</h2>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="login-box-section">
                     @yield('content')
                 </div>

@@ -11,7 +11,7 @@ class LoginController extends Controller
         if (Auth::check()){
             return redirect('/');
         }
-        return view('custom_auth.login');
+        return view('custom_auth.login', ['title' => 'Login']);
     }
 
     public function authenticate(Request $request)
@@ -30,6 +30,13 @@ class LoginController extends Controller
 
         flash('Login failed.')->error();
         return back();
+    }
+
+    public function display_forgot_password(){
+        if (Auth::check()){
+            return redirect('/');
+        }
+        return view('custom_auth.forgot_password', ['title' => 'Reset Password']);
     }
 
     public function logout(Request $request)

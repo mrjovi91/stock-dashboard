@@ -18,6 +18,18 @@ body{
     background: #52ab98;
 }
 
+.center-column{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.center-row{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
 .login-box-section{
     display: flex;
     justify-content: center;
