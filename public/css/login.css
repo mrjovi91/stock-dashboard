@@ -66,7 +66,7 @@ form > *{
   overflow: hidden;
   padding: 0 25px;
   position: relative;
-  text-align: center;
+  text-align: center !important;
   text-transform: none;
   transform: translateZ(0);
   transition: all .2s,box-shadow .08s ease-in;
@@ -82,4 +82,8 @@ form > *{
 
 .form-bottons:focus {
   box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+}
+
+.anchor-form-buttons {
+    line-height: 44px !important; 
 }
