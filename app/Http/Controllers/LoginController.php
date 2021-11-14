@@ -11,7 +11,7 @@ class LoginController extends Controller
         if (Auth::check()){
             return redirect('/');
         }
-        return view('login');
+        return view('custom_auth.login');
     }
 
     public function authenticate(Request $request)
