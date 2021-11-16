@@ -40,7 +40,7 @@
                             <img src="{{ asset('img/257.png') }}" width="221.4" height="231.3">
                         </div>
                         <div class="center-row">
-                            <h2>{{ $title }}</h2>
+                            <h2>{{ $title ?? "" }}</h2>
                         </div>
                     </div>
                 </div>
