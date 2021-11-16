@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -18,16 +19,11 @@ class RegisterController extends Controller
     {
         $credentials = $request->validate([
             'name' => ['required'],
-            'email' => ['required', 'email'],
+            'email' => 'required|email|unique:users,email',
             'password' => ['required'],
             'vpassword' => ['required'],
 
         ]);
-
-        if ($this->user_exists($credentials['email'])){
-            flash('Email Address has been registered before.')->error();
-            return back();
-        }
 
         if ($credentials['password'] != $credentials['vpassword']){
             flash('Password does not match!')->error();
