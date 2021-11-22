@@ -17,7 +17,13 @@ class MagicLinkController extends Controller
         $link->user = $user;
         $link->magic_link_type = $email_validation_type;
         $link->enabled = 1;
+        
+        $expiry = new \DateTime();
+        $expiry->modify(config('magiclink.default_expiry'));
+        $link->expires_at = $expiry;
+
         $link->save();
+
         $user_slug = $user->slug();
         $magic_link_slug = $link->slug();
         return "$app_url/$base_url/$user_slug/$magic_link_slug";
