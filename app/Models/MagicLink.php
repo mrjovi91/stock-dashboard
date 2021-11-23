@@ -14,12 +14,12 @@ class MagicLink extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(User::class, 'user_id', 'id');
     }
 
     public function magic_link_type()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(MagicLinkType::class, 'magic_link_type_id', 'id');
     }
 
 }

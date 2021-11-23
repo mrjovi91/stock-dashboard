@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddConsumedAtAndExpiresAtToMagicLinks extends Migration
+class AddSecretToMagiclinks extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class AddConsumedAtAndExpiresAtToMagicLinks extends Migration
     public function up()
     {
         Schema::table('magic_links', function (Blueprint $table) {
-            $table->timestamp('consumed_at')->nullable();
-            $table->timestamp('expires_at')->nullable();
+            $table->string('random_secret')->nullable();
         });
     }
 
@@ -27,8 +26,7 @@ class AddConsumedAtAndExpiresAtToMagicLinks extends Migration
     public function down()
     {
         Schema::table('magic_links', function (Blueprint $table) {
-            $table->dropColumn('consumed_at');
-            $table->dropColumn('expires_at');
+            $table->dropColumn('random_secret');
         });
     }
 }
