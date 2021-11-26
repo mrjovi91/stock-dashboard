@@ -29,4 +29,4 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/forgot', [LoginController::class, 'display_forgot_password']);
 
 Route::get('/test/{user_id}', [MagicLinkController::class, 'generate_email_validation_link_test']);
-Route::get('/email-verification/{user_slug}/{magic_link_slug}/{hashed_magic_link}', [MagicLinkController::class, 'verify_email']);
+Route::get('/email-verification/{user_slug}/{magic_link_slug}/{hashed_magic_link}', [MagicLinkController::class, 'verify_email']); 

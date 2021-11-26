@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\MagicLinkType;
 use App\Models\MagicLink;
 use Illuminate\Support\Str;
-
+ 
 class MagicLinkController extends Controller
 {
     public function generate_email_validation_link(User $user){
@@ -22,19 +23,29 @@ class MagicLinkController extends Controller
     }
 
     public function verify_email(Request $request, $user_slug, $magic_link_slug, $hashed_magic_link){
-        $test = array(
-            "user_slug" => $user_slug,
-            "magic_link_slug" => $magic_link_slug,
-            "hashed_magic_link" => $hashed_magic_link
-        );
-        // dd($test);
+        if (Auth::check()){
+            $magic_link = MagicLink::findBySlugOrFail($magic_link_slug);
+            $user = $magic_link->user();
+            if (! auth()->user()->is($user)) {
+                redirect('/');
+            }
+        }
 
         $link_type = MagicLinkType::where('name', "Email Validation")->get()->first() ;
         if(!$this->link_is_valid($link_type, $user_slug, $magic_link_slug, $hashed_magic_link)){
-            return 'Invalid';
+            redirect('/');
         }
+        $user = User::findBySlugOrFail($user_slug);
+        $now = new \DateTime();
+        $user->email_verified_at = $now;
+        $user->save();
         $this->consume_magic_link($magic_link_slug);
-        return 'Valid';
+
+        flash("Account verification success!")->success();
+        if (Auth::check()){
+            redirect('/');
+        }
+        redirect('/login');
     }
 
     private function link_is_valid(MagicLinkType $link_type, $user_slug, $magic_link_slug, $provided_hashed_magic_link){
@@ -61,7 +72,6 @@ class MagicLinkController extends Controller
             return false;
         }
         
-        dd($magic_link->magic_link_type()->first());
         if(! $magic_link->magic_link_type()->is($link_type)){
             return false;
         }
@@ -70,7 +80,7 @@ class MagicLinkController extends Controller
         if (! $magic_link->user()->is($provided_user)) {
             return false;
         }
-        
+
         $hashed_magic_link = $this->generate_link_hash_for_url($magic_link);
         if ($provided_hashed_magic_link != $hashed_magic_link){
             return false;
@@ -80,7 +90,7 @@ class MagicLinkController extends Controller
     }
 
     private function consume_magic_link($magic_link_slug){
-        $magic_link = MagicLink::findBySlugOrFail($user_slug);
+        $magic_link = MagicLink::findBySlugOrFail($magic_link_slug);
         $now = new \DateTime();
         $magic_link->consumed_at = $now;
         $magic_link->enabled = 0;
@@ -104,8 +114,9 @@ class MagicLinkController extends Controller
         $link->save();
         $user_slug = $user->slug();
         $magic_link_slug = $link->slug();
+        $magic_link = MagicLink::findBySlugOrFail($magic_link_slug);
 
-        $hashed_magic_link = $this->generate_link_hash_for_url($link);
+        $hashed_magic_link = $this->generate_link_hash_for_url($magic_link);
 
         return "$app_url/$base_url/$user_slug/$magic_link_slug/$hashed_magic_link";
     }
