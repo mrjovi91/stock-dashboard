@@ -25,7 +25,7 @@ class MagicLinkController extends Controller
     public function verify_email(Request $request, $user_slug, $magic_link_slug, $hashed_magic_link){
         if (Auth::check()){
             $magic_link = MagicLink::findBySlugOrFail($magic_link_slug);
-            $user = $magic_link->user()->first();
+            $user = $magic_link->user();
             if (! auth()->user()->is($user)) {
                 return redirect('/');
             }
